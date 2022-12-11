@@ -31,3 +31,13 @@
     opacity: 0.9;
     transition: all 0.2s linear;
 }
+
+
+/* remove button style */
+.removeButton {
+    float: right;
+}
+
+.listItem {
+    margin-bottom: 0.5rem;
+}

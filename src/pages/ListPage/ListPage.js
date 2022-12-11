@@ -3,25 +3,29 @@ import './ListPage.css';
 
 class ListPage extends Component {
     state = {
+        listTitle: '',
         movies: [
-            { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
+            // { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
         ]
     }
+    // when ListPage is rendered, fetch the data
     componentDidMount() {
         const id = this.props.match.params;
         console.log(id);
-        // TODO: запрос к сервер на получение списка
-        // TODO: запросы к серверу по всем imdbID
+        console.log(this.props.match)
+        fetch('https://acb-api.algoritmika.org/api/movies/list/' + id.id)
+            .then(res => res.json())
+            .then(data => { this.setState({ movies: data.movies, listTitle: data.title }) });
     }
-    render() { 
+    render() {
         return (
             <div className="list-page">
-                <h1 className="list-page__title">Мой список</h1>
+                <h1 className="list-page__title">{this.state.listTitle}</h1>
                 <ul>
                     {this.state.movies.map((item) => {
                         return (
-                            <li key={item.imdbID}>
-                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank">{item.title} ({item.year})</a>
+                            <li key={item.id}>
+                                <a href={"https://www.imdb.com/title/" + item.id} target="_blank" rel="noopener noreferrer">{item.name} ({item.year})</a>
                             </li>
                         );
                     })}
@@ -30,5 +34,5 @@ class ListPage extends Component {
         );
     }
 }
- 
+
 export default ListPage;

@@ -1,4 +1,6 @@
 .main-page__content {
+    display: flex;
+    flex-wrap: wrap;
     padding: 42px calc(50% - 500px);
     display: flex;
     justify-content: space-between;
@@ -12,8 +14,20 @@
 
 .main-page__search-box {
     margin-bottom: 35px;
+    width: 60%;
 }
 
 .main-page__favorites {
-    width: 35%;   
+    width: 35%;
+}
+
+.main-page {
+    width: 100%;
+
+}
+
+@media screen and (max-width: 642px) {
+    .main-page__main-section {
+        width: 100%;
+    }
 }
